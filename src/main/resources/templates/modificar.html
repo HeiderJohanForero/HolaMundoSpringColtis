@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos de la Persona</title>
+        <meta charset="UTF-8"/>
+        <style>
+            body {
+                /*Tipo de letra*/
+                font-family: Arial,sans-serif;
+                /*margen*/
+                margin:0;
+                /*borde*/
+                padding:0;
+            }
+            h1 {
+                /*tamaño de letra*/
+                font-size: 2em;
+                /*alineacion del texto*/
+                text-align: center;
+                /*tamaño de la margen*/
+                margin-top: 10px;
+            }
+            a {
+                /*display*/
+                display: block;
+                /*allineacion del texto*/
+                text-align: center;
+                /*margen*/
+                margin-top: 20px;
+            }
+            form  {
+                /*ancho*/
+                max-width: 400px;
+                /*margen*/
+                margin: 20px auto;
+                /*borde interno*/
+                padding: 10px;
+                /*border*/
+                border: 1px solid#ccc;
+                /*borde redondo*/
+                border-radius: 5px;
+            }
+            label {
+                /*display*/
+                display: block;
+                /*fronte*/
+                font-weight: bold;
+                /*margen*/
+                margin-top: 10px;
+            }
+            input[type="text"], [type="email"],[type="tel"]{
+                /*ancho*/
+                width: 100%;
+                /*margen interna*/
+                padding: 8px;
+                /*margen*/
+                margin-top: 10px;
+                /*borde redondo*/
+                border-radius: 5px;
+                /*tamaño*/
+                box-sizing: border-box;
+            }
+            input[type="submit"]{
+                /*color*/
+                background-color: #4ACAF50;
+                /*color*/
+                color:#fff;
+                /*ancho*/
+                width: 100%;
+                /*margen interna*/
+                padding: 8px;
+                /*borde*/
+                border: none;
+                /*margen*/
+                margin-top: 10px;
+                /*borde redondo*/
+                border-radius: 5px;
+                /*tamaño*/
+                box-sizing: border-box;
+                /*cursor*/
+                cursor: pointer;
+                /*ancho*/
+                width: 100%;
+            }
+            input[type="submit"]:hover{
+                /*color*/
+                background-color: #F9FF33;
+            }
+            Span{
+                /*color*/
+                color: #f00;
+                /*tamaño*/
+                font-size: 0.8em;
+                /*margen*/
+                margin-left: 5px;
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        <!-- Encabezado principal -->
+        <h1>Datos de la Persona</h1>
+        <!-- Enlace para regresar a la página principal -->
+        <a th:href="@{/}">Regresar</a>
+        <br/>
+        <!-- Formulario para guardar los datos de la persona -->
+        <form th:action="@{/guardar}" method="post" th:object="${persona}">
+            <!-- Campo oculto para el ID de la persona -->
+            <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
+            <br/>
+            <!-- Campo de entrada para el nombre de la persona -->
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" th:field="*{nombre}"/>
+            <br/>
+            <!-- Campo de entrada para el apellido de la persona -->
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="apellido" th:field="*{apellido}"/>
+            <br/>
+            <!-- Campo de entrada para el correo electrónico de la persona -->
+            <label for="email">Email:</label>
+            <input type="email" name="email" th:field="*{email}"/>
+            <br/>
+            <!-- Campo de entrada para el número de teléfono de la persona -->
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" name="telefono" th:field="*{telefono}"/>
+            <br/>
+            <!-- Botón para enviar el formulario y guardar los datos de la persona -->
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+    </body>
+</html>

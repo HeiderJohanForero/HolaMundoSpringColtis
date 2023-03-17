@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+        <style>
+            header{
+                /*Color cabecera*/
+                background-color:#F5A244;
+                color: #fff;
+                /*Margen*/
+                padding: 10px;
+                /*Display flex*/
+                display: flex;
+                /*Justificación de contenido*/
+                justify-content: space-evenly;
+                /*Alineación de items*/
+                align-items: center;
+            }
+            header h1 {
+                /*margen*/
+                margin: 0;
+                font-size: 34px;
+                              
+            }
+            table {
+                /*borde*/
+                border-collapse: collapse;
+                /*ancho*/
+                width: 80%;
+                /*margen*/
+                margin-top: 40px;
+                /*margen del boton*/
+                margin-bottom: 10px;
+            }
+            th {
+                /*Color cabecera*/
+                background-color: #F5A244;
+                color: #fff;
+                /*tamaño*/
+                font-size: 20px;
+                /*letra con negrilla*/
+                font-weight: bold;
+                /*margen interna*/
+                padding: 1px;
+                /*Alineación de texto*/
+                text-align: center;
+                /*borde solido*/
+                border: 1px solid #fff;
+            }
+            td {
+                /*Alineación de texto*/
+                text-align: center;
+                /*margen interna*/
+                padding: 6px;
+                /*borde solido*/
+                border: 3px solid #fff;
+            }
+            footer {
+                background-color: #F5A244;
+                color: #fff;
+                /*Margen*/
+                padding: 10px;
+                /*Alineación de texto*/
+                text-align: center;
+                /*posicion absoluta*/
+                position: absolute;
+                /*boton*/
+                bottom: 0;
+                /*ancho*/
+                width: 100%;
+                /*alto*/
+                height: 40px;
+                /*Display flex*/
+                display: flex;
+                /*Justificación de contenido*/
+                justify-content: center;
+                /*Alineación de items*/
+                align-items: center;
+            }
+            footer p {
+                /*margen*/
+                margin: 0;
+                /*tamaño letra*/
+                font-size: 14px;
+            }
+            a {
+                display: inline-block;
+                padding: 0.5em 1em;
+                background-color: #E4BE26;
+                color: crimson;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 5px;
+                box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+                border: none; /*Agregamos un borde nulo*/
+                cursor: pointer; /*Agregamos un cursor tipo pointer para indicar que es un botón*/
+                font-size: 14px; /*Agregamos un tamaño de letra para mejorar la legibilidad*/
+                font-weight: bold; /*Agregamos negrita para mejorar la legibilidad*/
+                transition: background-color 0.3s ease; /*Agregamos una transición suave para el cambio de color*/
+            }
+
+            a:hover {
+                background-color: #94FE7C; /*Cambiamos el color de fondo al pasar el mouse*/
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <header th:replace="plantilla/plantilla :: header"></header>           
+        <h1>Inicio</h1>
+        <br/>
+
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}">Crear Persona</a>
+        <br/>
+
+        <div th:if="${personas != null and !personas.empty}">
+
+            <table border="1">
+
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+                </tr>
+                <tr th:each="persona: ${personas}">
+                    <td th:text="${persona.nombre}">Mostrar Nombre</td>
+                    <td th:text="${persona.apellido}">Mostrar Apellido</td>
+                    <td th:text="${persona.email}">Mostrar Email</td>
+                    <td th:text="${persona.telefono}">Mostrar Telefono</td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"></a></td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="Eliminar"></a></td>
+                </tr>                
+            </table>           
+
+        </div>
+
+        <div th:if="${personas == null or personas.empty}">
+            la lista esta vacia                
+        </div>
+        <footer th:replace="plantilla/plantilla :: footer"></footer> 
+    </body>
+</html>

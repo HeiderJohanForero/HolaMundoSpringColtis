@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+            <style>
+                body {
+                    /*color*/
+                    background-color: #f2f2f2;
+                    /*letra*/
+                    font-family: Arial, sans-serif;
+                }
+                h1 {
+                    /*color*/
+                    color: #333;
+                    /*Alineación texto*/
+                    text-align: center;
+                    /*margen*/
+                    margin-top: 50px;
+                }
+                form {
+                    /*color*/
+                    background-color: #fff;
+                    /*border redondo*/
+                    border-radius: 5px;
+                    /*box shadow*/
+                    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+                    /*borde interno*/
+                    padding: 60px;
+                    /*margen*/
+                    margin:0 auto;
+                    /*ancho*/
+                    width: 400px;
+                }
+                label {
+                    /*display*/
+                    display: block;
+                    /*tamaño*/
+                    font-size: 16px;
+                    /*tamaño*/
+                    font-family: bold;
+                    /*margen*/
+                    margin-bottom: 8px;
+                }
+                input[type="text"],
+                input[type="password"]{
+                    /*borde*/
+                    border: none;
+                    /*borde redondo*/
+                    border-radius: 3px;
+                    /*box*/
+                    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+                    /*tamaño frontal*/
+                    font-size: 16px;
+                    /*margen*/
+                    margin-bottom: 6px;
+                    /*borde interno*/
+                    padding: 6px;
+                    /*ancho*/
+                    width: 100%;
+                }
+                input[type="submit"]{
+                    /*color*/
+                    background-color: #333;
+                    /*borde*/
+                    border: none;
+                    /*borde redondo*/
+                    border-radius: 5px;
+                    /*color*/
+                    color: #fff;
+                    /*tamaño frontal*/
+                    font-size: 16px;
+                    /*tamaño*/
+                    font-weight: bolder;
+                    /*margen*/
+                    margin-top: 40px;
+                    /*panel*/
+                    padding: 6px;
+                    /*ancho*/
+                    width: 100%
+                         
+                    
+                        
+                }
+                input[type="submit"]:hover{
+                    /*color*/
+                    background-color: #666;
+                    /*cursor*/
+                    cursor:pointer;
+                }
+            </style>    
+    </head>
+    <body>
+        <h1>Login</h1>     
+        <form method="POST" th:action="@{/login}">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username"/>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password"/>
+            <input type="submit" value="Login"/>
+        </form>        
+    </body>
+</html>
